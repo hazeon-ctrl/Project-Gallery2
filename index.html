@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J's Project Gallery</title>
+
+    <style>
+        /* === GLOBAL === */
+        body {
+            font-family: "Courier New", monospace;
+            background-color: #111;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Layout intentionally “narrow” and centered */
+        main {
+            max-width: 800px;
+            margin: auto;
+            padding: 6px;
+        }
+
+        /* === HEADER === */
+        header {
+            background-color: #33cc33;
+            border: double black;
+            border-radius: 5%;
+            text-align: center;
+            margin: 6px;
+            padding: 10px;
+            text-shadow: 0 0 4px #003300;
+        }
+        header h1 {
+            color: black;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        /* === SECTION (Project Card) === */
+        section {
+            background-color: black;
+            color: white;
+            border: double 3px #33cc33;
+            border-radius: 2%;
+            padding: 8px;
+            margin: 10px 5px;
+            font-weight: bolder;
+        }
+
+        /* Titles */
+        h2 {
+            color: darkorange;
+            text-shadow: 0 0 2px orange;
+            margin-bottom: 0;
+        }
+
+        /* Body text */
+        p {
+            margin-top: 4px;
+            margin-bottom: 6px;
+            color: #cfcfcf;
+        }
+
+        /* === LINKS === */
+        .links {
+            background-color: #333;
+            border: double thin #777;
+            border-radius: 4%;
+            padding: 5px 10px;
+            margin: 6px 0;
+        }
+        .links a {
+            color: #00ff99;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .links a:hover {
+            text-decoration: underline;
+            color: yellow;
+        }
+
+        /* === CODE ICON === */
+        .code-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: grey;
+            border: double 2px #ccc;
+            color: white;
+            padding: 4px 10px;
+            margin: 6px 0;
+            border-radius: 5%;
+            font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+            box-shadow: inset 0 0 3px #000, 0 0 6px #666;
+        }
+
+        /* === DETAILS === */
+        details {
+            background-color: #222;
+            border: double thin #33cc33;
+            border-radius: 3%;
+            padding: 5px 8px;
+            margin-top: 6px;
+            font-size: 1rem;
+            color: #d0ffd0;
+        }
+        details summary {
+            cursor: pointer;
+            color: #33cc33;
+            font-weight: bold;
+        }
+        details[open] {
+            background-color: #191919;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #33cc33;
+            text-align: center;
+            border: double black;
+            border-radius: 5%;
+            margin: 8px;
+            padding: 10px;
+        }
+        footer a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* === IMAGE === */
+        img {
+            max-width: 100%;
+            height: auto;
+            border: double thin #666;
+            border-radius: 2%;
+            margin-top: 6px;
+        }
+
+        /* === MOBILE FRIENDLY TWEAKS === */
+        @media (max-width: 600px) {
+            body {
+                font-size: 0.95rem;
+            }
+            section {
+                margin: 8px 2px;
+            }
+            header, footer {
+                border-radius: 3%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Jason's Web Projects Gallery</h1>
+</header>
+
+<main>
+
+    <section>
+        <h2>Ambient Spectre</h2>
+        <p>
+            A "space shooter" that focuses on sound design with harmonious SFX and combo attacks. The 'homing attacks' are neat. 🎯
+        </p>
+        <p>Developed with Claude Sonnet 4.5 over seventy-two iterations and two weeks in the free plan.</p>
+
+        <div class="links">
+            <a href="https://hazeon-ctrl.github.io/AmbientSpectre/">PC version</a>
+            <h3>WASD or arrow keys to move, Space bar to fire. Collect sets of colored pellets to unlock combos like Shield or Rapid Fire</h3>
+            <p> no win condition - keep blasting and more enemies appear, check your score!</p>
+        </div>
+
+        <span class="code-icon">&#128220; (click Details to see Design Spec)</span>
+        <details>
+            <summary>Ambient Spectre</summary>
+            <p>**Format:** Game Program Design Specification<br>
+                (several pages of text appear here!)</p>
+        </details>
+        <p><em>updated: October 9, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>OctoAlien</h2>
+        <p>
+            A fast paced, deep space arcade-style game. Fire bombs and bullets at the enemies'
+            defenses and hunt down the elusive OctoAlien!
+        </p>
+        <p>Developed with Claude Sonnet 4.5.</p>
+
+        <div class="links">
+            <a href="https://hazeon-ctrl.github.io/OctoAlien-2-4/">Current mobile version 2-4</a><br>
+            <a href="https://hazeon-ctrl.github.io/OctoAlien/">PC version</a>
+        </div>
+
+        <span class="code-icon">&#128220; (click Details to see Design Spec)</span>
+        <details>
+            <summary>OctoAlien - Design Specification v2.1 (Oct 4, 2025)</summary>
+            <p>**Format:** Game Program Design Specification<br>
+                (several pages of text appear here!)</p>
+        </details>
+        <p><em>updated: October 9, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>Grocery Simulator</h2>
+        <p>
+            A text based game with weighted lottery sales demands,
+            departmental purchases and margins, daily sales and expenses including basic employee management.
+            You can currently cheat by raising prices as much as possible — customers won't refuse high prices yet.
+        </p>
+        <div class="links">
+            <a href="https://hazeon-ctrl.github.io/GrocerySimulator/">Grocery Sim 2</a>
+        </div>
+
+        <span class="code-icon">&#128220; (click Details to see Design Spec)</span>
+        <details>
+            <summary>Grocery Simulator Design Spec</summary>
+            <img src="GrocerySim theory.jpg" alt="picture of AI chat">
+        </details>
+        <p><em>updated: September 21, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>Towers of Hanoi</h2>
+        <p>
+            A classic puzzle game: move the tower of discs to another location without placing larger discs
+            on top of smaller ones. Base code by Ali Spittel. Attempted to add my own CSS (which is a fine mess).
+            Added a nice clicking sound to disc interaction and a pretty cool BGM downloaded from
+            <a href="https://pixabay.com/sound-effects/search/sfx/">Pixabay</a>.
+        </p>
+        <div class="links">
+            <a href="https://hazeon-ctrl.github.io/Towers-of-Hanoi/">Towers of Hanoi</a>
+        </div>
+        <p><em>updated: September 12, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>Image Mirror Reversal Tool</h2>
+        <p>
+            Quickly save a mirrored impression of any picture file — good for reversing cellphone photos with
+            backwards text. Very quick and simple implementation, designed as a tool rather than an ad-revenue source;
+            works offline.
+        </p>
+        <div class="links">
+            <a href="https://hazeon-ctrl.github.io/ImageFlip/">ImageFlip</a>
+        </div>
+        <p><em>updated: August 21, 2025</em></p>
+    </section>
+</main>
+
+<footer>
+    <a href="https://github.com/hazeon-ctrl">https://github.com/hazeon-ctrl</a>
+</footer>
+</body>
+</html>
