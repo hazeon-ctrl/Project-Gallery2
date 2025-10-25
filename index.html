@@ -66,12 +66,15 @@
         /* === LINKS === */
         .links {
             background-color: #333;
+
+            font-weight: bold;
             border: double thin #777;
             border-radius: 4%;
             padding: 5px 10px;
             margin: 6px 0;
         }
         .links a {
+            font-weight: bold;
             color: #00ff99;
             text-decoration: none;
             font-weight: bold;
@@ -143,6 +146,7 @@
         }
 
         /* === MOBILE FRIENDLY TWEAKS === */
+
         @media (max-width: 600px) {
             body {
                 font-size: 0.95rem;
@@ -180,10 +184,293 @@
         <span class="code-icon">&#128220; (click Details to see Design Spec)</span>
         <details>
             <summary>Ambient Spectre</summary>
-            <p>**Format:** Game Program Design Specification<br>
-                (several pages of text appear here!)</p>
+            <p>
+                Audio Spectrum Shooter - Version 72 Design Specification<br>
+                Date: 2025-10-21<br>
+                Status: Stable, Feature-Complete<br>
+                Framework: Vanilla HTML5 + Web Audio <br>API<br>
+                <br>
+                1. Executive Summary<br>
+                Version 72 represents a stable, playable arcade shooter where combo-driven power-ups and homing projectiles create fast-paced, rewarding gameplay. The game uses the D Dorian scale as its harmonic foundation, with all sound effects tuned to create a cohesive musical experience. The core loop centers on collecting pellets to activate stacking power-ups that dramatically increase player capabilities.
+                <br>
+                2. Core Mechanics<br>
+                2.1 Player<br>
+                <br>
+                Movement: WASD or Arrow keys (5 units/frame)<br>
+                Shooting: Hold SPACE to fire<br>
+                <br>
+                Base fire rate: Every 15 frames<br>
+                Combo fire rate: Every 5 frames (when any power-up active)<br>
+                <br>
+
+                Homing shots: ALL player projectiles have homing behavior (0.08 strength)<br>
+                Starting health: 100 HP<br>
+                Visual: 30x30 green square with cyan cockpit detail, engine glows, subtle green radial gradient aura<br>
+                <br>
+                2.2 Enemies<br>
+                <br>
+                Spawn system: Dynamic spawning based on enemies destroyed<br>
+                <br>
+                Max enemies: 1 + floor(enemiesDestroyed / 3), capped at 5<br>
+                1% chance per frame to spawn when below max<br>
+                <br>
+
+                Behavior: Random vertical movement with shooting AI<br>
+                Health: 100 HP each<br>
+                Shoot interval: 120 frames<br>
+                Reward: 50 points on destruction<br>
+                Visuals: 30x30 squares with red/orange gradients, angular design, weapon ports, red radial aura<br>
+                <br>
+                2.3 Pellets<br>
+                <br>
+                Spawn rate: Every 45 frames<br>
+                Max on screen: 16<br>
+                Spawn area: Player's half of screen, avoiding danger zone<br>
+                Value: 10 points each<br>
+                Power-up trigger: Every 4 pellets collected<br>
+                Visual: Pulsing colored circles with glow rings<br>
+                <br>
+                2.4 Danger Zone<br>
+                <br>
+                Location: Bottom 120 pixels of screen (audio spectrum visualization)<br>
+                Damage: 3 HP every 30 frames when player inside<br>
+                Healing mode: When "Spectrum Heal" power-up active, heals 1-4 HP/tick instead<br>
+                Visual: Red spectrum bars (default) or green spectrum bars (heal mode)<br>
+                <br>
+
+                3. Power-Up System (Stacking Combos)<br>
+                3.1 Power-Up Types<br>
+                <br>
+                Spread Shot - Fire 3-6 bullets in a spread pattern (increases with level)<br>
+                Shield - Block chance: 30%/60%/90% by level (radius 50px, flashes white when blocking)<br>
+                Spectrum Heal - Converts danger zone to healing zone, 1-4 HP/tick by level<br>
+                Damage Boost - Adds +5/+10/+15 damage per level (visual: red indicator bars)<br>
+                <br>
+                3.2 Stacking Mechanics<br>
+                <br>
+                Multiple active: Can have all 4 power-ups simultaneously<br>
+                Level stacking: Getting same power-up increases level (★★★ max)<br>
+                Duration: 400 frames per power-up<br>
+                Auto rapid-fire: Having ANY power-up active triggers rapid fire mode<br>
+                Visual indicators: Stars (★) show level, unique visual effects per type<br>
+                <br>
+                3.3 Combo Benefits<br>
+                <br>
+                Base fire rate: 15 frames<br>
+                Combo fire rate: 5 frames (3x faster)<br>
+                Homing missiles become devastating with spread shot<br>
+                Multiple level-3 power-ups = screen-clearing power<br>
+                <br>
+
+                4. Audio System (D Dorian Scale)<br>
+                4.1 Scale Definition<br>
+                javascriptD3: 146.83, E3: 164.81, F3: 174.61, G3: 196.00,
+                A3: 220.00, B3: 246.94, C4: 261.63, D4: 293.66,
+                E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00,
+                B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25,
+                F5: 698.46, G5: 783.99, A5: 880.00, B5: 987.77
+                ```<br>
+                <br>
+                ### 4.2 Ambient Foundation<br>
+                - **Drone:** Two sine waves (D3 + A3) at 0.06 gain<br>
+                - **Purpose:** Establishes tonal center (root + fifth)<br>
+                - **Routing:** Through reverb → analyser → destination<br>
+                <br>
+                ### 4.3 Sound Events<br>
+                <br>
+                #### Player Shoot<br>
+                - **Note:** A4 (normal) or G4 (spread shot)<br>
+                - **Waveform:** Triangle (softer than square)<br>
+                - **Duration:** 120ms with smooth envelope<br>
+                - **Filter:** Low-pass at note*3 for warmth<br>
+                - **Harmonic:** Subtle octave-up sine wave<br>
+                - **Routing:** Through reverb<br>
+                <br>
+                #### Enemy Shoot<br>
+                - **Notes:** E3, G3, B3, or C4 (per enemy personality)<br>
+                - **Waveforms:** Sawtooth, Square, Triangle, or Sine<br>
+                - **Duration:** 100ms<br>
+                - **Sub-harmonic:** Octave below for m
+                <br>
+                #### Hit Sound<br>
+                - **Notes:** C4 → F3 descent (two detuned sawtooths)<br>
+                - **Sub-bass:** D3*0.5 for impact<br>
+                - **Filter:** 400Hz → 80Hz sweep<br>
+                - **Duration:** 200ms<br>
+                - **Routing:** Through delay + analyser<br>
+                <br>
+                #### Collect Sound<br>
+                - **Arpeggio:** D5 → E5 → G5<br>
+                - **Heal chime:** A5 (subtle, delayed)<br>
+                - **Waveform:** Sine<br>
+                - **Duration:** 150ms per note<br>
+                - **Routing:** Through reverb<br>
+                <br>
+                #### Power-up Sounds<br>
+                - **Spread Shot:** E4-G4-B4 (minor triad)<br>
+                - **Shield:** F4-A4-C5 (subdominant)<br>
+                - **Spectrum Heal:** G4-B4-D5 (major sound)<br>
+                - **Damage Boost:** D4-A4-D5 (power chord)<br>
+                - **Waveform:** Triangle<br>
+                - **Duration:** 400ms<br>
+                - **Routing:** Through reverb<br>
+                <br>
+                #### Combo Level-Up<br>
+                - **Note:** D5 * 2^(level*0.25) - ascending per level<br>
+                - **Waveform:** Sine<br>
+                - **Duration:** 200ms<br>
+                <br>
+                #### Explosion<br>
+                - **White noise:** Filtered 2000Hz → 50Hz over 500ms<br>
+                - **Chord cluster:** B3-C4-D4 (dark, dissonant)<br>
+                - **Duration:** 300-500ms<br>
+                - **Routing:** Through delay + reverb (big tail)<br>
+                <br>
+                #### Enemy Spawn<br>
+                - **Arpeggio:** Root note × [1.0, 1.2, 1.5, 1.8] (minor third, fifth, minor seventh)<br>
+                - **Waveform:** Matches enemy timbre<br>
+                - **Duration:** 240ms total<br>
+                <br>
+                ### 4.4 Audio Effects Chain<br>
+                ```
+                Oscillators → Filters → Gain Nodes →<br>
+                ├─ Reverb (2s impulse response) → Analyser → Destination<br>
+                └─ Delay (300ms, 0.4 feedback) ──┘<br>
+                ```
+                <br>
+                ### 4.5 Enemy Personalities (Version 72+)<br>
+                - **Growler** (E3, Sawtooth) - Deep, aggressive<br>
+                - **Buzzer** (G3, Square) - Mid-range, mechanical<br>
+                - **Singer** (B3, Triangle) - Higher, melodic<br>
+                - **Whistler** (C4, Sine) - Highest, pure tone<br>
+                <br>
+                **Note:** Sustained tones implemented but may need debugging in V72.<br>
+                <br>
+                ---<br>
+                <br>
+                ## 5. Visual System<br>
+                <br>
+                ### 5.1 Canvas Specifications<br>
+                - **Size:** 800x600 pixels<br>
+                - **Background:** Dark blue (#0d0d1f) with 25% opacity trail effect<br>
+                - **Border:** 2px solid cyan (#00ff88)<br>
+                <br>
+                ### 5.2 Spectrum Visualizer<br>
+                - **FFT Size:** 512<br>
+                - **Smoothing:** 0.8<br>
+                - **Bar count:** ~256<br>
+                - **Height:** Scales to 120px (danger zone height)<br>
+                - **Colors:** Red/orange gradient (danger) or green/cyan (heal mode)<br>
+                - **Position:** Bottom of screen<br>
+                - **Boundary line:** Dashed, color-coded<br>
+                <br>
+                ### 5.3 Visual Indicators<br>
+                - **Homing:** Purple ring (32px radius) around player<br>
+                - **Shield:** Cyan ring (50px), flashes white when blocking, thickness = level<br>
+                - **Damage Boost:** Red bars on ship side (count = level)<br>
+                - **Power-up UI:** Text display with star ratings (★★★)<br>
+                <br>
+                ---<br>
+                <br>
+                ## 6. Game Balance<br>
+                <br>
+                ### 6.1 Difficulty Scaling<br>
+                - Enemies spawn faster as you destroy more<br>
+                - Max 5 simultaneous enemies<br>
+                - Enemy density creates natural difficulty curve<br>
+                <br>
+                ### 6.2 Reward Loop<br>
+                ```<br>
+                Collect 4 pellets → Power-up →<br>
+                Rapid fire + Homing → Destroy enemies →<br>
+                More pellets spawn → Collect more →<br>
+                Stack power-ups → Screen-clearing power<br>
+                <br>
+                6.3 Risk/Reward<br>
+                <br>
+                Pellets spawn in player area but near danger zone<br>
+                Venturing into danger zone risky but necessary for pellets<br>
+                Spectrum Heal inverts risk (danger zone becomes healing sanctuary)<br>
+                <br>
+
+                7. Technical Implementation<br>
+                <br>
+                7.1 Architecture<br>
+                <br>
+                Single HTML file (~1000 lines)<br>
+                No external dependencies (pure Web Audio API)<br>
+                Event-driven game loop using requestAnimationFrame<br>
+                Audio scheduled using AudioContext.currentTime<br>
+                <br>
+                7.2 Performance Characteristics<br>
+                <br>
+                Target: 60 FPS<br>
+                Typical load: 10-15 active audio nodes<br>
+                Memory: Minimal (no large buffers, all procedural synthesis)<br>
+                <br>
+                7.3 Browser Compatibility<br>
+                <br>
+                Requires Web Audio API support<br>
+                Click-to-start required (browser autoplay policies)<br>
+                Include cool 'start-up' sound to initiate game play<br>
+                <br>
+                Tested on modern Chrome/Firefox/Safari<br>
+                <br>
+
+                8. Known Issues & Future Work<br>
+                8.1 V72 Status<br>
+                <br>
+                ✅ Core gameplay loop stable<br>
+                ✅ Power-up stacking system working<br>
+                ✅ Audio harmonically coherent<br>
+                ✅ Homing missiles standard<br>
+                ✅ Enemy spawn/despawn working<br>
+                ⚠️ Sustained enemy tones implemented but may need debugging<br>
+                ❌ No player death/respawn system<br>
+                ❌ No health recovery except Spectrum Heal in danger zone<br>
+                <br>
+                8.2 Potential Additions<br>
+                <br>
+                Map clearing system (explored but unstable)<br>
+                Player death with respawn mechanic<br>
+                Additional enemy types with unique behaviors<br>
+                Boss encounters<br>
+                Procedural level progression<br>
+                Saved high scores<br>
+                <br>
+
+                9. Design Philosophy<br>
+                <br>
+                Core Tenets:<br>
+                <br>
+                Audio-first design - Sound informs gameplay, not just decorates<br>
+                Emergent complexity - Simple systems combine for depth<br>
+                Rewarding skill - Homing + combos = power fantasy<br>
+                Musical coherence - All sounds harmonize (D Dorian framework)<br>
+                Visual clarity - Spectrum display both functional and aesthetic<br>
+                <br>
+                Player Experience Goals:<br>
+                <br>
+                Feel powerful when combos active<br>
+                Hear progression through harmonic richness<br>
+                Clear audio feedback for all actions<br>
+                Risk/reward tension (danger zone)<br>
+                Satisfying destruction (explosions with reverb tail)<br>
+                <br>
+
+                10. Success Metrics<br>
+                V72 Achievements:<br>
+                <br>
+                Stable 60 FPS gameplay<br>
+                No crashes or audio glitches in typical play<br>
+                Power-up system creates compelling gameplay variance<br>
+                Audio spectrum responds to all game sounds<br>
+                Homing missiles make combat feel good<br>
+                Combo system creates "one more pellet" loop<br>
+                All sounds musically coherent in Dorian mode<br>
+            </p>
         </details>
-        <p><em>updated: October 9, 2025</em></p>
+        <p><em>updated: October 21, 2025</em></p>
     </section>
 
     <section>
