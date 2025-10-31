@@ -63,10 +63,9 @@
             color: #cfcfcf;
         }
 
-        /* === LINKS === */
-        .links {
-            background-color: #333;
 
+            .links {
+            background-color: #333;
             font-weight: bold;
             border: double thin #777;
             border-radius: 4%;
@@ -74,9 +73,10 @@
             margin: 6px 0;
         }
         .links a {
-            font-weight: bold;
+            font-weight: bolder;
+            font-size: 1.5rem;
             color: #00ff99;
-            text-decoration: none;
+            text-decoration: underline;
             font-weight: bold;
         }
         .links a:hover {
@@ -84,6 +84,11 @@
             color: yellow;
         }
 
+        /* 64x64 pixel images for visual reference of projects*/
+        .project-icon {
+          width: 64px;
+          height: 64px;
+        }
         /* === CODE ICON === */
         .code-icon {
             display: inline-flex;
@@ -176,7 +181,7 @@
         <p>Developed with Claude Sonnet 4.5 over seventy-two iterations and two weeks in the free plan.</p>
 
         <div class="links">
-            <a href="https://hazeon-ctrl.github.io/AmbientSpectre/">PC version</a>
+            <ul> <li><a href="https://hazeon-ctrl.github.io/AmbientSpectre/">PC version (only)</a> </li></ul>
             <h3>WASD or arrow keys to move, Space bar to fire. Collect sets of colored pellets to unlock combos like Shield or Rapid Fire</h3>
             <p> no win condition - keep blasting and more enemies appear, check your score!</p>
         </div>
@@ -475,6 +480,7 @@
 
     <section>
         <h2>OctoAlien</h2>
+        <img class="project-icon" src="OctoAlien-icon.png" alt="alien octopus drops bombs">
         <p>
             A fast paced, deep space arcade-style game. Fire bombs and bullets at the enemies'
             defenses and hunt down the elusive OctoAlien!
@@ -482,8 +488,10 @@
         <p>Developed with Claude Sonnet 4.5.</p>
 
         <div class="links">
-            <a href="https://hazeon-ctrl.github.io/OctoAlien-2-4/">Current mobile version 2-4</a><br>
-            <a href="https://hazeon-ctrl.github.io/OctoAlien/">PC version</a>
+            <ul>
+            <li><a href="https://hazeon-ctrl.github.io/OctoAlien-2-5/">Current mobile version 2-5</a><br></li>
+                <li><a href="https://hazeon-ctrl.github.io/OctoAlien/">PC version</a></li>
+            </ul>
         </div>
 
         <span class="code-icon">&#128220; (click Details to see Design Spec)</span>
@@ -889,13 +897,16 @@
 
     <section>
         <h2>Grocery Simulator</h2>
+        <img class="project-icon" src="Grocery-Sim-icon.png" alt="grocery store checkout">
         <p>
             A text based game with weighted lottery sales demands,
             departmental purchases and margins, daily sales and expenses including basic employee management.
             You can currently cheat by raising prices as much as possible — customers won't refuse high prices yet.
         </p>
         <div class="links">
+            <ul><li>
             <a href="https://hazeon-ctrl.github.io/GrocerySimulator/">Grocery Sim 2</a>
+                </li></ul>
         </div>
 
         <span class="code-icon">&#128220; (click Details to see Design Spec)</span>
@@ -915,7 +926,9 @@
             <a href="https://pixabay.com/sound-effects/search/sfx/">Pixabay</a>.
         </p>
         <div class="links">
+            <ul><li>
             <a href="https://hazeon-ctrl.github.io/Towers-of-Hanoi/">Towers of Hanoi</a>
+            </li></ul>
         </div>
         <p><em>updated: September 12, 2025</em></p>
     </section>
@@ -928,7 +941,9 @@
             works offline.
         </p>
         <div class="links">
+            <ul><li>
             <a href="https://hazeon-ctrl.github.io/ImageFlip/">ImageFlip</a>
+                </li></ul>
         </div>
         <p><em>updated: August 21, 2025</em></p>
     </section>
