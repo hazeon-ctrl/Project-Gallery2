@@ -45,107 +45,7 @@
     header h1 {
     color: black;
     font-size: 1.8rem;
-    margin: 0;
-    }
-
-    /* === SECTION (Project Card) === */
-    section {
-    background-color: black;
-    color: white;
-    border: double 3px #33cc33;
-    border-radius: 2%;
-    padding: 8px;
-    margin: 10px 5px;
-    font-weight: bolder;
-    }
-
-    /* Titles */
-    h2 {
-    color: darkorange;
-    text-shadow: 0 0 2px orange;
-    margin-bottom: 0;
-    }
-
-    /* Body text */
-    p {
-    margin-top: 4px;
-    margin-bottom: 6px;
-    color: #cfcfcf;
-    }
-
-
-    .links {
-    background-color: #333;
-    font-weight: bold;
-    border: double thin #777;
-    border-radius: 4%;
-    padding: 5px 10px;
-    margin: 6px 0;
-    }
-    .links a {
-    font-weight: bolder;
-    font-size: 1.5rem;
-    color: #00ff99;
-    text-decoration: underline;
-    font-weight: bold;
-    }
-    .links a:hover {
-    text-decoration: underline;
-    color: yellow;
-    }
-
-    /* 64x64 pixel images for visual reference of projects*/
-    .project-icon {
-    width: 64px;
-    height: 64px;
-    }
-    /* === CODE ICON === */
-    .code-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: grey;
-    border: double 2px #ccc;
-    color: white;
-    padding: 4px 10px;
-    margin: 6px 0;
-    border-radius: 5%;
-    font-size: clamp(1.1rem, 1.8vw, 1.6rem);
-    box-shadow: inset 0 0 3px #000, 0 0 6px #666;
-    }
-
-    /* === DETAILS === */
-    details {
-    background-color: #222;
-    border: double thin #33cc33;
-    border-radius: 3%;
-    padding: 5px 8px;
-    margin-top: 6px;
-    font-size: 1rem;
-    color: #d0ffd0;
-    }
-    details summary {
-    cursor: pointer;
-    color: #33cc33;
-    font-weight: bold;
-    }
-
-    /* Details hide long design spec documents until clicked*/
-    details[open] {
-    background-color: #191919;
-    }
-
-    /* === FOOTER === */
-    footer {
-    background-color: #33cc33;
-    text-align: center;
-    border: double black;
-    border-radius: 5%;
-    margin: 8px;
-    padding: 10px;
-    }
-    footer a {
-    color: black;
+s
     text-decoration: none;
     font-weight: bold;
     }
@@ -204,18 +104,25 @@
     border-radius: 3%;
     }
     }
+
+    .project-icon{
+        width: 64px;
+        height: 64px;
+    }
     </style>
 </head>
 
 <body>
 <header>
-    <h1>Jason's Web Projects Gallery</h1>
+    <h1>J's Web Projects Gallery</h1>
 </header>
 
 <main>
 
     <section>
         <h2>Ambient Spectre</h2>
+        <img class="project-icon" src="ambient-spectre-64x64.png" alt="Ambient Spectre">
+
         <p>
             A "space shooter" that focuses on sound design with harmonious SFX and combo attacks. The 'homing attacks' are neat. 🎯
         </p>
