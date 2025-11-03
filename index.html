@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J's Project Gallery</title>
+    <title>J's vibe codes
+    </title>
 <style>
     /* === GLOBAL === */
     body {
@@ -30,6 +31,7 @@
     /* Add top margin to control how much background shows */
     margin-top: clamp(180px, 22vh, 320px);
     min-height: 70vh;
+        border-radius: 1%;
     }
 
     /* === HEADER === */
@@ -41,11 +43,12 @@
     margin: 6px;
     padding: 10px;
     text-shadow: 0 0 4px #003300;
+        opacity: 33%;
     }
     header h1 {
     color: black;
     font-size: 1.8rem;
-s
+
     text-decoration: none;
     font-weight: bold;
     }
@@ -126,16 +129,44 @@ s
     h2{
         font-size: 2.5rem;
     }
+
+    /* making the site title glow on hover */
+    .title-glow {
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;}
+
+    .title-glow:hover {
+            color: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+    }
     </style>
 </head>
 
 <body>
 <header>
-    <h1>J's Web Projects Gallery</h1>
+    <h1>
+        <span class="title-glow">J's </span>
+        <span class="title-glow">shitty </span>
+        <span class="title-glow">Vibecode </span>
+        <span class="title-glow">Gallery</span>
+    </h1>
 </header>
 
 <main>
-
+    𓁹‿𓁹 in this kitchen all dishes are undercooked ~
+    <section>
+        <h2>HexTile Conquest</h2>
+        <img class="project-icon" src="HexTile-Conquest.png" alt="Hexagonal board map with claimed tiles.">
+        <p>
+            A basic hexagonal tiled map game with some interesting influence propagation.</p>
+        <p>Developed with Claude Sonnet 4.5</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/oa65qz7TzWo?si=nQQuli4MSMOsIpef"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
     <section>
         <h2>Ambient Spectre</h2>
         <img class="project-icon" src="Ambient-Spectre-64x64.png" alt="Ambient Spectre game icon">
