@@ -3,542 +3,1164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SandCave</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #1a1a2e;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-        }
-        #gameCanvas {
-            border: 3px solid #4a4a6a;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            background: #0f0f1e;
-        }
-        .hud {
-            margin-bottom: 15px;
-            font-size: 18px;
-            text-align: center;
-        }
-        .controls {
-            margin-top: 15px;
-            text-align: center;
-            font-size: 14px;
-            color: #aaa;
-        }
-        .game-over, .game-won {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            display: none;
-            z-index: 10;
-        }
-        .game-over h2 {
-            color: #ff4444;
-            margin-bottom: 20px;
-        }
-        .game-won h2 {
-            color: #44ff44;
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px 30px;
-            font-size: 16px;
-            background: #4a4a6a;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        button:hover {
-            background: #5a5a7a;
-        }
+    <title>J's vibe codes
+    </title>
+<style>
+    /* === GLOBAL === */
+    body {
+    font-family: "Courier New", monospace;
+    background-color: #111;
+    color: #00ff00;
+    margin: 0;
+    padding: 0;
+    background-image: url("Dripping-gold-moon.webp");
+    /* Control background display */
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+
+    /* Layout intentionally "narrow" and centered */
+    main {
+    max-width: 800px;
+    margin: auto;
+    padding: 6px;
+    /* Add background to main content so it's not transparent */
+    background-color: rgba(17, 17, 17, 0.95);
+    /* Add top margin to control how much background shows */
+    margin-top: clamp(180px, 22vh, 320px);
+    min-height: 70vh;
+        border-radius: 1%;
+    }
+
+    /* === HEADER === */
+    header {
+    background-color: #33cc33;
+    border: double black;
+    border-radius: 5%;
+    text-align: center;
+    margin: 6px;
+    padding: 10px;
+    text-shadow: 0 0 4px #003300;
+        opacity: 33%;
+    }
+    header h1 {
+    color: black;
+    font-size: 1.8rem;
+
+    text-decoration: none;
+    font-weight: bold;
+    }
+
+    a{
+        color: darkorange;
+    }
+
+    footer a:hover {
+    text-decoration: underline;
+    }
+
+    /* === SECTIONS === */
+    section {
+        border: 2px solid #777;  /* Green border */
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 6px;
+        background-color: rgba(0, 0, 0, 0.7);  /* Slight background for readability */
+    }
+
+    /* === IMAGE === */
+    img {
+    max-width: 100%;
+    height: auto;
+    border: double thin #666;
+    border-radius: 2%;
+    margin-top: 6px;
+    }
+
+    .video-container{
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    }
+
+    .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    }
+
+    /* === MOBILE FRIENDLY TWEAKS === */
+
+    @media (max-width: 600px) {
+    body {
+    font-size: 0.95rem;
+    }
+
+    main {
+    /* Mobile: Show more background (smaller top margin) */
+    margin-top: clamp(120px, 18vh, 200px);
+    /* Add side margins to prevent edge-to-edge */
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 8px;
+    }
+
+    section {
+    /* Mobile: constrain width slightly */
+    margin: 8px 4px;
+    padding: 10px;
+    }
+
+    header, footer {
+    border-radius: 3%;
+    }
+    }
+
+    .project-icon{
+        width: 64px;
+        height: 64px;
+    }
+
+    .links{
+        font-weight: bold;
+        font-size: 1.8rem;
+    }
+
+.mobile-links{
+    font-weight: bold;
+    font-size: 2.3rem;
+}
+
+
+
+    .links:visited {
+        color: darkgrey;
+    }
+
+    h2{
+        font-size: 2.5rem;
+        transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+        /* more hovers */
+        background-color: rgb(102, 255, 204, 0.2);
+        border-radius: 2%;
+        padding: 0.1em;
+    ;
+    }
+
+    h2:hover {
+        color: #fff; /* Keep text color white or change to a lighter shade */
+        text-shadow:
+                0 0 10px #0ff, /* Cyan glow */
+                0 0 20px #0ff,
+                0 0 40px #0ff,
+                0 0 80px #0ff;
+    }
+
+    /* making the site title glow on hover */
+    .title-glow {
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;}
+
+    .title-glow:hover {
+            color: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+    }
     </style>
 </head>
+
 <body>
-<div class="hud">
-    <span>Layer: <span id="layer">1</span>/12</span>
-    <span style="margin-left: 30px;">Key: <span id="keyStatus">❌</span></span>
+<header>
+    <h1>
+        <span class="title-glow">J's </span>
+        <span class="title-glow">shitty </span>
+        <span class="title-glow">Vibecode </span>
+        <span class="title-glow">Gallery</span>
+`    </h1>
+</header>
+
+<main>
+    𓁹‿𓁹 in this kitchen dishes are undercooked ~ reheat and add your own spice 🌶️
+
+<section>
+    <h2>SandCave2</h2>
+    <h3>Dig through layers of enemies and find the door, while avoiding rocks!</h3>
+    <div class="project-icon">
+        <img src="SandCave.png" alt="SandCave game icon">
+    </div>
+    <br>
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Ju5K9zBq5ww" title="YouTube video player"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+    </div>
+    <br>
+    <p>
+        Based on a classic SMB2 level~<br>
+        A brilliant one-shot from Claude that has been expanded to include obstacles
+    </p>
+    <summary>
+        Click details for the prompt:
+        <details>
+            <em>
+                <br>
+            "Standalone HTML/JS/CSS game: SandCave<br>
+            The cave: 12 horizontal layers, each formed by 18 cubes with dark brown crust at the top and light brown underneath.
+                The player starts at the top layer, and seeks the dark orange door at the bottom layer.<br><br>
+            The player: azure color, diamond shape, glowing. The player moves left and right across the layer, choosing a point to Dig down.
+                Dust rises, that cube of the layer disappears and the player drops down to the next level.<br><br>
+            The enemies: Fast (blue-green) and slow ( red-brown). Enemies occupy each level of the SandCave. Fast enemies kill the player on contact.
+                Slow enemies push the player up a layer.<br><br>
+            The door: glows white-green when the player reaches it and the game is won."
+                <br><br>
+                Random tiles are rocks, which block movement across them.
+                The Door can appear anywhere along the bottom row<br><br>
+                Random tiles are rocks, which block movement across them.
+                The Door can appear anywhere along the bottom row.<br><br>
+                The gray rock tiles also block enemy movement!<br><br>
+                A key in a random location must be collected to unlock to the door 🔑🚪<br>
+
+            </em>
+        </details>
+    </summary>
+    <br>
+    <div class="links">
+        <ul><li>
+            <a class="links" href="https://hazeon-ctrl.github.io/SandCave2/">PC Version</a>
+        </li></ul>
+    </div>
+    <p><em>updated: November 22, 2025</em></p>
+</section>
+
+
+    <section>
+    <h2>Shoot the Moon (WindEmanate2)</h2>
+        <h3>Catch the falling stars!</h3>
+        <div class="project-icon">
+            <img src="WindEmanate.png" alt="Shoot the Moon game logo">
+        </div>
+        <br>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/O7oLQc89fsc" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+                    picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
 </div>
-<canvas id="gameCanvas" width="900" height="720"></canvas>
-<div class="controls">
-    ← → to move | SPACE to dig | R to restart
-</div>
-
-<div class="game-over" id="gameOver">
-    <h2>Game Over!</h2>
-    <p>You were caught by an enemy!</p>
-    <button onclick="restartGame()">Try Again</button>
-</div>
-
-<div class="game-won" id="gameWon">
-    <h2>Victory!</h2>
-    <p>You escaped the SandCave!</p>
-    <button onclick="restartGame()">Play Again</button>
-</div>
-
-<script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-
-    const CUBE_SIZE = 50;
-    const COLS = 18;
-    const ROWS = 12;
-    const PLAYER_SIZE = 20;
-
-    let gameState = 'playing';
-    let particles = [];
-    let keyCollected = false;
-    let key = null;
-
-    class Player {
-        constructor() {
-            this.x = canvas.width / 2;
-            this.y = 30;
-            this.layer = 0;
-            this.speed = 4;
-            this.falling = false;
-            this.fallSpeed = 0;
-        }
-
-        draw() {
-            ctx.save();
-            ctx.translate(this.x, this.y);
-            ctx.rotate(Math.PI / 4);
-
-            // Glow effect
-            ctx.shadowBlur = 20;
-            ctx.shadowColor = '#00d4ff';
-            ctx.fillStyle = '#00d4ff';
-            ctx.fillRect(-PLAYER_SIZE/2, -PLAYER_SIZE/2, PLAYER_SIZE, PLAYER_SIZE);
-
-            ctx.restore();
-        }
-
-        update() {
-            if (this.falling) {
-                this.fallSpeed += 0.5;
-                this.y += this.fallSpeed;
-
-                const targetY = this.layer * 60 + 30;
-                if (this.y >= targetY) {
-                    this.y = targetY;
-                    this.falling = false;
-                    this.fallSpeed = 0;
-                }
-            }
-
-            // Check key collection
-            if (key && !keyCollected && this.layer === key.layer) {
-                const dist = Math.abs(this.x - key.x);
-                if (dist < 30) {
-                    keyCollected = true;
-                    document.getElementById('keyStatus').textContent = '✅';
-                    key = null;
-                }
-            }
-        }
-
-        moveLeft() {
-            if (!this.falling && this.x > PLAYER_SIZE) {
-                const newX = this.x - this.speed;
-                const col = Math.floor(newX / CUBE_SIZE);
-
-                // Check if there's a rock blocking
-                if (!cave.isRockAt(col, this.layer)) {
-                    this.x = newX;
-                }
-            }
-        }
-
-        moveRight() {
-            if (!this.falling && this.x < canvas.width - PLAYER_SIZE) {
-                const newX = this.x + this.speed;
-                const col = Math.floor(newX / CUBE_SIZE);
-
-                // Check if there's a rock blocking
-                if (!cave.isRockAt(col, this.layer)) {
-                    this.x = newX;
-                }
-            }
-        }
-
-        dig() {
-            if (this.falling || this.layer >= ROWS - 1) return;
-
-            const col = Math.floor(this.x / CUBE_SIZE);
-
-            // Can't dig through rocks
-            if (cave.isRockAt(col, this.layer)) {
-                return;
-            }
-
-            if (cave.layers[this.layer][col]) {
-                cave.layers[this.layer][col] = false;
-                createDustParticles(col * CUBE_SIZE + CUBE_SIZE/2, this.layer * 60 + 40);
-                this.layer++;
-                this.falling = true;
-                updateHUD();
-            }
-        }
-    }
-
-    class Cave {
-        constructor() {
-            this.layers = [];
-            this.rocks = [];
-            this.doorCol = Math.floor(Math.random() * COLS);
-
-            for (let i = 0; i < ROWS; i++) {
-                this.layers[i] = new Array(COLS).fill(true);
-                this.rocks[i] = [];
-
-                // Add random rocks (15% chance per tile, but not on top layer or door position)
-                for (let j = 0; j < COLS; j++) {
-                    if (i === 0) {
-                        this.rocks[i][j] = false;
-                    } else if (i === ROWS - 1 && j === this.doorCol) {
-                        this.rocks[i][j] = false; // No rock where door is
-                    } else {
-                        this.rocks[i][j] = Math.random() < 0.15;
-                    }
-                }
-            }
-        }
-
-        draw() {
-            for (let row = 0; row < ROWS; row++) {
-                for (let col = 0; col < COLS; col++) {
-                    if (this.layers[row][col]) {
-                        const x = col * CUBE_SIZE;
-                        const y = row * 60;
-
-                        if (this.rocks[row][col]) {
-                            // Rock tile - gray and solid
-                            ctx.fillStyle = '#555555';
-                            ctx.fillRect(x, y, CUBE_SIZE, 60);
-                            ctx.fillStyle = '#444444';
-                            ctx.fillRect(x + 5, y + 5, CUBE_SIZE - 10, 50);
-                            ctx.strokeStyle = '#333333';
-                            ctx.lineWidth = 2;
-                            ctx.strokeRect(x, y, CUBE_SIZE, 60);
-                        } else {
-                            // Dark brown crust
-                            ctx.fillStyle = '#4a3520';
-                            ctx.fillRect(x, y, CUBE_SIZE, 20);
-
-                            // Light brown underneath
-                            ctx.fillStyle = '#8b6f47';
-                            ctx.fillRect(x, y + 20, CUBE_SIZE, 40);
-
-                            // Border
-                            ctx.strokeStyle = '#2a1f15';
-                            ctx.strokeRect(x, y, CUBE_SIZE, 60);
-                        }
-                    }
-                }
-            }
-
-            // Draw door at bottom (random position)
-            const doorX = this.doorCol * CUBE_SIZE + 10;
-            const doorY = (ROWS - 1) * 60 + 10;
-
-            // Check if player reached door with key
-            if (player.layer === ROWS - 1 &&
-                Math.abs(player.x - (doorX + 15)) < 35) {
-                if (keyCollected) {
-                    // Win glow
-                    ctx.shadowBlur = 30;
-                    ctx.shadowColor = '#7fff7f';
-                    ctx.fillStyle = '#7fff7f';
-                    gameState = 'won';
-                    setTimeout(() => {
-                        document.getElementById('gameWon').style.display = 'block';
-                    }, 500);
-                } else {
-                    // Door locked - red glow
-                    ctx.shadowBlur = 20;
-                    ctx.shadowColor = '#ff4444';
-                    ctx.fillStyle = '#cc5500';
-                }
-            } else {
-                ctx.fillStyle = '#cc5500';
-            }
-
-            ctx.fillRect(doorX, doorY, 30, 40);
-            ctx.strokeStyle = '#994400';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(doorX, doorY, 30, 40);
-            ctx.shadowBlur = 0;
-
-            // Draw lock icon if key not collected
-            if (!keyCollected) {
-                ctx.fillStyle = '#ffdd00';
-                ctx.font = '20px Arial';
-                ctx.fillText('🔒', doorX + 5, doorY + 28);
-            }
-        }
-
-        isRockAt(col, row) {
-            return this.rocks[row] && this.rocks[row][col];
-        }
-    }
-
-    class Enemy {
-        constructor(layer, type) {
-            this.layer = layer;
-            this.type = type; // 'fast' or 'slow'
-            this.x = Math.random() * (canvas.width - 40) + 20;
-            this.speed = type === 'fast' ? 2.5 : 1;
-            this.direction = Math.random() > 0.5 ? 1 : -1;
-            this.size = 15;
-        }
-
-        draw() {
-            const y = this.layer * 60 + 30;
-
-            if (this.type === 'fast') {
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = '#00ffcc';
-                ctx.fillStyle = '#00ffcc';
-            } else {
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#cc6644';
-                ctx.fillStyle = '#cc6644';
-            }
-
-            ctx.beginPath();
-            ctx.arc(this.x, y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-        }
-
-        update() {
-            const nextX = this.x + this.speed * this.direction;
-            const nextCol = Math.floor(nextX / CUBE_SIZE);
-
-            // Check if next position would be in a rock
-            if (nextCol >= 0 && nextCol < COLS && cave.isRockAt(nextCol, this.layer)) {
-                this.direction *= -1;
-            } else if (nextX < this.size || nextX > canvas.width - this.size) {
-                this.direction *= -1;
-            } else {
-                this.x = nextX;
-            }
-        }
-
-        checkCollision(player) {
-            if (player.layer !== this.layer) return false;
-
-            const dist = Math.hypot(player.x - this.x, player.y - (this.layer * 60 + 30));
-            return dist < this.size + PLAYER_SIZE/2;
-        }
-    }
-
-    class Particle {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.vx = (Math.random() - 0.5) * 4;
-            this.vy = -Math.random() * 3 - 2;
-            this.life = 1;
-            this.size = Math.random() * 3 + 2;
-        }
-
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            this.vy += 0.2;
-            this.life -= 0.02;
-        }
-
-        draw() {
-            ctx.globalAlpha = this.life;
-            ctx.fillStyle = '#8b6f47';
-            ctx.fillRect(this.x, this.y, this.size, this.size);
-            ctx.globalAlpha = 1;
-        }
-    }
-
-    function createDustParticles(x, y) {
-        for (let i = 0; i < 20; i++) {
-            particles.push(new Particle(x, y));
-        }
-    }
-
-    class Key {
-        constructor() {
-            // Random layer (not first or last)
-            this.layer = Math.floor(Math.random() * (ROWS - 3)) + 2;
-            this.x = Math.random() * (canvas.width - 60) + 30;
-            this.bobOffset = 0;
-        }
-
-        draw() {
-            this.bobOffset += 0.05;
-            const y = this.layer * 60 + 30 + Math.sin(this.bobOffset) * 5;
-
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = '#ffdd00';
-            ctx.fillStyle = '#ffdd00';
-            ctx.font = '30px Arial';
-            ctx.fillText('🔑', this.x - 15, y + 10);
-            ctx.shadowBlur = 0;
-        }
-    }
-
-    const player = new Player();
-    const cave = new Cave();
-    const enemies = [];
-
-    // Create key
-    key = new Key();
-
-    // Create enemies for each layer
-    for (let i = 1; i < ROWS; i++) {
-        const numEnemies = Math.floor(Math.random() * 2) + 1;
-        for (let j = 0; j < numEnemies; j++) {
-            const type = Math.random() > 0.5 ? 'fast' : 'slow';
-            enemies.push(new Enemy(i, type));
-        }
-    }
-
-    const keys = {};
-    window.addEventListener('keydown', (e) => {
-        keys[e.key] = true;
-        if (e.key === ' ') {
-            e.preventDefault();
-            if (gameState === 'playing') player.dig();
-        }
-        if (e.key.toLowerCase() === 'r') {
-            restartGame();
-        }
-    });
-
-    window.addEventListener('keyup', (e) => {
-        keys[e.key] = false;
-    });
-
-    function updateHUD() {
-        document.getElementById('layer').textContent = player.layer + 1;
-    }
-
-    function restartGame() {
-        document.getElementById('gameOver').style.display = 'none';
-        document.getElementById('gameWon').style.display = 'none';
-
-        gameState = 'playing';
-        keyCollected = false;
-        document.getElementById('keyStatus').textContent = '❌';
-
-        player.x = canvas.width / 2;
-        player.y = 30;
-        player.layer = 0;
-        player.falling = false;
-        player.fallSpeed = 0;
-
-        cave.layers = [];
-        for (let i = 0; i < ROWS; i++) {
-            cave.layers[i] = new Array(COLS).fill(true);
-        }
-
-        cave.rocks = [];
-        cave.doorCol = Math.floor(Math.random() * COLS);
-        for (let i = 0; i < ROWS; i++) {
-            cave.rocks[i] = [];
-            for (let j = 0; j < COLS; j++) {
-                if (i === 0) {
-                    cave.rocks[i][j] = false;
-                } else if (i === ROWS - 1 && j === cave.doorCol) {
-                    cave.rocks[i][j] = false;
-                } else {
-                    cave.rocks[i][j] = Math.random() < 0.15;
-                }
-            }
-        }
-
-        enemies.length = 0;
-        for (let i = 1; i < ROWS; i++) {
-            const numEnemies = Math.floor(Math.random() * 2) + 1;
-            for (let j = 0; j < numEnemies; j++) {
-                const type = Math.random() > 0.5 ? 'fast' : 'slow';
-                enemies.push(new Enemy(i, type));
-            }
-        }
-
-        particles.length = 0;
-
-        // Create new key
-        key = new Key();
-
-        updateHUD();
-    }
-
-    function gameLoop() {
-        ctx.fillStyle = '#0f0f1e';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        cave.draw();
-
-        // Draw key if not collected
-        if (key && !keyCollected) {
-            key.draw();
-        }
-
-        if (gameState === 'playing') {
-            // Player movement
-            if (keys['ArrowLeft']) player.moveLeft();
-            if (keys['ArrowRight']) player.moveRight();
-
-            player.update();
-
-            // Update enemies
-            enemies.forEach(enemy => {
-                enemy.update();
-                enemy.draw();
-
-                if (enemy.checkCollision(player)) {
-                    if (enemy.type === 'fast') {
-                        gameState = 'over';
-                        document.getElementById('gameOver').style.display = 'block';
-                    } else if (enemy.type === 'slow' && player.layer > 0) {
-                        player.layer--;
-                        player.y = player.layer * 60 + 30;
-                        updateHUD();
-                    }
-                }
-            });
-        }
-
-        player.draw();
-
-        // Update particles
-        particles = particles.filter(p => {
-            p.update();
-            p.draw();
-            return p.life > 0;
-        });
-
-        requestAnimationFrame(gameLoop);
-    }
-
-    gameLoop();
-</script>
+            <br>
+            <p>
+                Emanate energy into the windy skies, in hopes of reaching the Moon. Each contact advances the phase of the moon:
+                complete a full cycle and catch the Star that falls!<br>
+                <br>
+                This is more of an art piece than a game ~ it was developed with Sonnet 4.5 while using poetic language and emojis.
+            </p>
+        <summary>
+            Click details for the prompt:<br>
+            <details>
+                <br>
+                <em>"HTML/JS game:<br>
+                player attempts to emanate upwards towards a target, but
+                the wind blows back and forth, disrupting the emanations<br>
+                Player moves left or right to attempt to disperse the emanations towards the target in relation to the wind ~<br>
+                <br>
+                Absolutely beautiful, the target is a night time moon! 🌕<br>
+                As the emanations hit the moon, it wanes 🌖<br>
+                Once the moon is "new" 🌚 a shining star slowly descends 🌟<br>
+                If the player 👨‍🎤 captures the star, the moon resets, and the game continues ~"</em>
+            </details>
+        </summary>
+            <br>
+            <div class="links">
+                <ul><li>
+                    <a class="links" href="https://hazeon-ctrl.github.io/WindEmanate/">PC version</a>
+                </li></ul>
+            </div>
+        </div>
+        <p><em>updated: November 12, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>Disappearing Islands</h2>
+        <h3>~Bridge the gap!</h3>
+        <div class="project-icon">
+
+            <img src="" alt="Disappearing Islands">
+
+        </div>
+        <br>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/fNlD3KeqT1s?si=6gNhZuxDYEHBabDm"
+                    title="Disappearing Islands game demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                    gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <p>
+            Connect the islands with bridges before the water rises~ Bridges need occasional repairs, water level can be lowered,
+            raise island levels to build longer bridges
+        </p>
+        <div class="links">
+            <ul><li>
+                <a class="links" href="https://hazeon-ctrl.github.io/Disappearing-Islands/">PC version</a>
+            </li></ul>
+        </div>
+        <p></em>updated November 10, 2025</em></p>
+    </section>
+    <section>
+        <h2>PushZone</h2>
+        <h3>(2D physics test)</h3>
+        <div class="project-icon">
+            <img src="PushZone-64x64.png" alt="PushZone">
+        </div>
+        <br>
+        <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/j1wRTD_kLsY" title="PushZone game video demo"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <p>
+            Collision detection with velocity. Use the player piece to push the balls into pockets.
+            Buttons in the center open or close the pockets. Subsequent levels introduce more balls ~
+        </p>
+        <div class="links">
+            <ul><li>
+                <a class="links" href="https://hazeon-ctrl.github.io/PushZone/">PC version</a>
+            </li></ul>
+        </div>
+        <p><em>updated: November 06, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>HexTile: Territories</h2>
+        <img class="project-icon" src="HexTile-Conquest.png" alt="Hexagonal board map with claimed tiles.">
+        <p>
+            A hexagonal tiled map game with some interesting influence propagation.</p>
+             <p>
+            Tile power cap increased from 99 to 999, with increased enemy AI ~
+            The game is fair initally, but the AI creates "super cells" of maximum power that need to be dealt with.
+        </p>
+        <p>Developed with Claude Sonnet 4.5</p>
+        <br>
+               <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/TbiAwXzgYN0"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <br>
+        <div class="links">
+            <ul> <li><a class="links" href="https://hazeon-ctrl.github.io/HexTile-Territories/">PC version</a> </li></ul>
+        </div>
+        <p><em>updated: November 04, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>ImageFlip</h2>
+        <h3>(mirror image tool)</h3>
+        <div class="project-icon">
+            <img src="mirror-image-flip.png" alt="Mirror Image Flip">
+        </div>
+        <br>
+        <p>
+            Quickly save a mirrored impression of any picture file — good for reversing backwards text.
+            Very quick and simple implementation, works offline.
+        </p>
+        <div class="links">
+            <ul><li>
+                <a class="links" href="https://hazeon-ctrl.github.io/ImageFlip/">ImageFlip</a>
+            </li></ul>
+        </div>
+        <p><em>updated: November 03, 2025</em></p>
+    </section>
+
+    <section>
+        <h2>Ambient Spectre</h2>
+        <img class="project-icon" src="Ambient-Spectre-64x64.png" alt="Ambient Spectre game icon">
+
+        <p>
+            A "space shooter" that focuses on sound design with harmonious SFX and combo attacks. The 'homing attacks' are neat. 🎯
+            The lower section of the game field displays the Web API audio analyser node, compiling all sound effects,
+            normally forming a 'danger zone' where the player takes damage from the environment.
+            Unlocking the "Spectrum Heal" combo temporarily converts the danger zone into a healing zone~
+        </p>
+        <p>Developed with Claude Sonnet 4.5</p>
+        <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/X9p9LM0KOW0?si=xoS3f_ZvICf403dv" title="YouTube video player"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
+                 web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="links">
+            <ul> <li><a class="links" href="https://hazeon-ctrl.github.io/AmbientSpectre/">PC version (only)</a> </li></ul>
+        </div>
+
+        <p>WASD or arrow keys to move, Space bar to fire. Collect sets of colored pellets to unlock combos like Shield or Rapid Fire</p>
+        <p> no win condition - keep blasting and more enemies appear, check your score!</p>
+
+
+        <details>
+            <span class="code-icon">&#128220;</span>
+            <summary>Ambient Spectre</summary>
+            <p>
+                Audio Spectrum Shooter - Version 72 Design Specification<br>
+                Date: 2025-10-21<br>
+                Status: Stable, Feature-Complete<br>
+                Framework: Vanilla HTML5 + Web Audio <br>API<br>
+                <br>
+                1. Executive Summary<br>
+                Version 72 represents a stable, playable arcade shooter where combo-driven power-ups and homing projectiles create fast-paced, rewarding gameplay. The game uses the D Dorian scale as its harmonic foundation, with all sound effects tuned to create a cohesive musical experience. The core loop centers on collecting pellets to activate stacking power-ups that dramatically increase player capabilities.
+                <br>
+                2. Core Mechanics<br>
+                2.1 Player<br>
+                <br>
+                Movement: WASD or Arrow keys (5 units/frame)<br>
+                Shooting: Hold SPACE to fire<br>
+                <br>
+                Base fire rate: Every 15 frames<br>
+                Combo fire rate: Every 5 frames (when any power-up active)<br>
+                <br>
+
+                Homing shots: ALL player projectiles have homing behavior (0.08 strength)<br>
+                Starting health: 100 HP<br>
+                Visual: 30x30 green square with cyan cockpit detail, engine glows, subtle green radial gradient aura<br>
+                <br>
+                2.2 Enemies<br>
+                <br>
+                Spawn system: Dynamic spawning based on enemies destroyed<br>
+                <br>
+                Max enemies: 1 + floor(enemiesDestroyed / 3), capped at 5<br>
+                1% chance per frame to spawn when below max<br>
+                <br>
+
+                Behavior: Random vertical movement with shooting AI<br>
+                Health: 100 HP each<br>
+                Shoot interval: 120 frames<br>
+                Reward: 50 points on destruction<br>
+                Visuals: 30x30 squares with red/orange gradients, angular design, weapon ports, red radial aura<br>
+                <br>
+                2.3 Pellets<br>
+                <br>
+                Spawn rate: Every 45 frames<br>
+                Max on screen: 16<br>
+                Spawn area: Player's half of screen, avoiding danger zone<br>
+                Value: 10 points each<br>
+                Power-up trigger: Every 4 pellets collected<br>
+                Visual: Pulsing colored circles with glow rings<br>
+                <br>
+                2.4 Danger Zone<br>
+                <br>
+                Location: Bottom 120 pixels of screen (audio spectrum visualization)<br>
+                Damage: 3 HP every 30 frames when player inside<br>
+                Healing mode: When "Spectrum Heal" power-up active, heals 1-4 HP/tick instead<br>
+                Visual: Red spectrum bars (default) or green spectrum bars (heal mode)<br>
+                <br>
+
+                3. Power-Up System (Stacking Combos)<br>
+                3.1 Power-Up Types<br>
+                <br>
+                Spread Shot - Fire 3-6 bullets in a spread pattern (increases with level)<br>
+                Shield - Block chance: 30%/60%/90% by level (radius 50px, flashes white when blocking)<br>
+                Spectrum Heal - Converts danger zone to healing zone, 1-4 HP/tick by level<br>
+                Damage Boost - Adds +5/+10/+15 damage per level (visual: red indicator bars)<br>
+                <br>
+                3.2 Stacking Mechanics<br>
+                <br>
+                Multiple active: Can have all 4 power-ups simultaneously<br>
+                Level stacking: Getting same power-up increases level (★★★ max)<br>
+                Duration: 400 frames per power-up<br>
+                Auto rapid-fire: Having ANY power-up active triggers rapid fire mode<br>
+                Visual indicators: Stars (★) show level, unique visual effects per type<br>
+                <br>
+                3.3 Combo Benefits<br>
+                <br>
+                Base fire rate: 15 frames<br>
+                Combo fire rate: 5 frames (3x faster)<br>
+                Homing missiles become devastating with spread shot<br>
+                Multiple level-3 power-ups = screen-clearing power<br>
+                <br>
+
+                4. Audio System (D Dorian Scale)<br>
+                4.1 Scale Definition<br>
+                javascriptD3: 146.83, E3: 164.81, F3: 174.61, G3: 196.00,
+                A3: 220.00, B3: 246.94, C4: 261.63, D4: 293.66,
+                E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00,
+                B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25,
+                F5: 698.46, G5: 783.99, A5: 880.00, B5: 987.77
+                ```<br>
+                <br>
+                ### 4.2 Ambient Foundation<br>
+                - **Drone:** Two sine waves (D3 + A3) at 0.06 gain<br>
+                - **Purpose:** Establishes tonal center (root + fifth)<br>
+                - **Routing:** Through reverb → analyser → destination<br>
+                <br>
+                ### 4.3 Sound Events<br>
+                <br>
+                #### Player Shoot<br>
+                - **Note:** A4 (normal) or G4 (spread shot)<br>
+                - **Waveform:** Triangle (softer than square)<br>
+                - **Duration:** 120ms with smooth envelope<br>
+                - **Filter:** Low-pass at note*3 for warmth<br>
+                - **Harmonic:** Subtle octave-up sine wave<br>
+                - **Routing:** Through reverb<br>
+                <br>
+                #### Enemy Shoot<br>
+                - **Notes:** E3, G3, B3, or C4 (per enemy personality)<br>
+                - **Waveforms:** Sawtooth, Square, Triangle, or Sine<br>
+                - **Duration:** 100ms<br>
+                - **Sub-harmonic:** Octave below for m
+                <br>
+                #### Hit Sound<br>
+                - **Notes:** C4 → F3 descent (two detuned sawtooths)<br>
+                - **Sub-bass:** D3*0.5 for impact<br>
+                - **Filter:** 400Hz → 80Hz sweep<br>
+                - **Duration:** 200ms<br>
+                - **Routing:** Through delay + analyser<br>
+                <br>
+                #### Collect Sound<br>
+                - **Arpeggio:** D5 → E5 → G5<br>
+                - **Heal chime:** A5 (subtle, delayed)<br>
+                - **Waveform:** Sine<br>
+                - **Duration:** 150ms per note<br>
+                - **Routing:** Through reverb<br>
+                <br>
+                #### Power-up Sounds<br>
+                - **Spread Shot:** E4-G4-B4 (minor triad)<br>
+                - **Shield:** F4-A4-C5 (subdominant)<br>
+                - **Spectrum Heal:** G4-B4-D5 (major sound)<br>
+                - **Damage Boost:** D4-A4-D5 (power chord)<br>
+                - **Waveform:** Triangle<br>
+                - **Duration:** 400ms<br>
+                - **Routing:** Through reverb<br>
+                <br>
+                #### Combo Level-Up<br>
+                - **Note:** D5 * 2^(level*0.25) - ascending per level<br>
+                - **Waveform:** Sine<br>
+                - **Duration:** 200ms<br>
+                <br>
+                #### Explosion<br>
+                - **White noise:** Filtered 2000Hz → 50Hz over 500ms<br>
+                - **Chord cluster:** B3-C4-D4 (dark, dissonant)<br>
+                - **Duration:** 300-500ms<br>
+                - **Routing:** Through delay + reverb (big tail)<br>
+                <br>
+                #### Enemy Spawn<br>
+                - **Arpeggio:** Root note × [1.0, 1.2, 1.5, 1.8] (minor third, fifth, minor seventh)<br>
+                - **Waveform:** Matches enemy timbre<br>
+                - **Duration:** 240ms total<br>
+                <br>
+                ### 4.4 Audio Effects Chain<br>
+                ```
+                Oscillators → Filters → Gain Nodes →<br>
+                ├─ Reverb (2s impulse response) → Analyser → Destination<br>
+                └─ Delay (300ms, 0.4 feedback) ──┘<br>
+                ```
+                <br>
+                ### 4.5 Enemy Personalities (Version 72+)<br>
+                - **Growler** (E3, Sawtooth) - Deep, aggressive<br>
+                - **Buzzer** (G3, Square) - Mid-range, mechanical<br>
+                - **Singer** (B3, Triangle) - Higher, melodic<br>
+                - **Whistler** (C4, Sine) - Highest, pure tone<br>
+                <br>
+                **Note:** Sustained tones implemented but may need debugging in V72.<br>
+                <br>
+                ---<br>
+                <br>
+                ## 5. Visual System<br>
+                <br>
+                ### 5.1 Canvas Specifications<br>
+                - **Size:** 800x600 pixels<br>
+                - **Background:** Dark blue (#0d0d1f) with 25% opacity trail effect<br>
+                - **Border:** 2px solid cyan (#00ff88)<br>
+                <br>
+                ### 5.2 Spectrum Visualizer<br>
+                - **FFT Size:** 512<br>
+                - **Smoothing:** 0.8<br>
+                - **Bar count:** ~256<br>
+                - **Height:** Scales to 120px (danger zone height)<br>
+                - **Colors:** Red/orange gradient (danger) or green/cyan (heal mode)<br>
+                - **Position:** Bottom of screen<br>
+                - **Boundary line:** Dashed, color-coded<br>
+                <br>
+                ### 5.3 Visual Indicators<br>
+                - **Homing:** Purple ring (32px radius) around player<br>
+                - **Shield:** Cyan ring (50px), flashes white when blocking, thickness = level<br>
+                - **Damage Boost:** Red bars on ship side (count = level)<br>
+                - **Power-up UI:** Text display with star ratings (★★★)<br>
+                <br>
+                ---<br>
+                <br>
+                ## 6. Game Balance<br>
+                <br>
+                ### 6.1 Difficulty Scaling<br>
+                - Enemies spawn faster as you destroy more<br>
+                - Max 5 simultaneous enemies<br>
+                - Enemy density creates natural difficulty curve<br>
+                <br>
+                ### 6.2 Reward Loop<br>
+                ```<br>
+                Collect 4 pellets → Power-up →<br>
+                Rapid fire + Homing → Destroy enemies →<br>
+                More pellets spawn → Collect more →<br>
+                Stack power-ups → Screen-clearing power<br>
+                <br>
+                6.3 Risk/Reward<br>
+                <br>
+                Pellets spawn in player area but near danger zone<br>
+                Venturing into danger zone risky but necessary for pellets<br>
+                Spectrum Heal inverts risk (danger zone becomes healing sanctuary)<br>
+                <br>
+
+                7. Technical Implementation<br>
+                <br>
+                7.1 Architecture<br>
+                <br>
+                Single HTML file (~1000 lines)<br>
+                No external dependencies (pure Web Audio API)<br>
+                Event-driven game loop using requestAnimationFrame<br>
+                Audio scheduled using AudioContext.currentTime<br>
+                <br>
+                7.2 Performance Characteristics<br>
+                <br>
+                Target: 60 FPS<br>
+                Typical load: 10-15 active audio nodes<br>
+                Memory: Minimal (no large buffers, all procedural synthesis)<br>
+                <br>
+                7.3 Browser Compatibility<br>
+                <br>
+                Requires Web Audio API support<br>
+                Click-to-start required (browser autoplay policy)<br>
+                Include VERY cool and ICONIC 'start-up' sound to initiate game play<br>
+                <br>
+                Tested on Chrome/Firefox/Safari 2025<br>
+                <br>
+
+                8. Known Issues & Future Work<br>
+                8.1 V72 Status<br>
+                <br>
+                ✅ Core gameplay loop stable<br>
+                ✅ Power-up stacking system working<br>
+                ✅ Audio harmonically coherent<br>
+                ✅ Homing missiles standard<br>
+                ✅ Enemy spawn/despawn working<br>
+                ⚠️ Sustained enemy tones implemented but may need debugging<br>
+                ❌ No player death/respawn system<br>
+                ❌ No health recovery except Spectrum Heal in danger zone<br>
+                <br>
+danger<!--                8.2 Potential Additions<br>-->
+<!--                <br>-->
+<!--                Map clearing system (explored but unstable)<br>-->
+<!--                Player death with respawn mechanic<br>-->
+<!--                Additional enemy types with unique behaviors<br>-->
+                Boss encounters<br>
+                Procedural level progression<br>
+                Saved high scores<br>
+                <br>
+
+                9. Design Philosophy<br>
+                <br>
+                Core Tenets:<br>
+                <br>
+                Audio-first design - Sound informs gameplay, not just decorates<br>
+                Emergent complexity - Simple systems combine for depth<br>
+                Rewarding skill - Homing + combos = power fantasy<br>
+                Musical coherence - All sounds harmonize (D Dorian framework)<br>
+                Visual clarity - Spectrum display both functional and aesthetic<br>
+                <br>
+                Player Experience Goals:<br>
+                <br>
+                Feel powerful when combos active<br>
+                Hear progression through harmonic richness<br>
+                Clear audio feedback for all actions<br>
+                Risk/reward tension (danger zone)<br>
+                Satisfying destruction (explosions with reverb tail)<br>
+                <br>
+
+                10. Success Metrics<br>
+                V72 Achievements:<br>
+                <br>
+                Stable 60 FPS gameplay<br>
+                No crashes or audio glitches in typical play<br>
+                Power-up system creates compelling gameplay variance<br>
+                Audio spectrum responds to all game sounds<br>
+                Homing missiles make combat feel good<br>
+                Combo system creates "one more pellet" loop<br>
+                All sounds musically coherent in Dorian mode<br>
+            </p>
+        </details>
+        <p><em>updated: October 21, 2025</em></p>
+    </section>
+<br>
+<br>
+    <section>
+        <h2>OctoAlien</h2>
+        <img class="project-icon" src="OctoAlien-icon.png" alt="A Magenta colored alien octopus drops orange bombs.">
+        <p>
+            A deep space arcade-style game. Fire bombs and bullets at the enemies'
+            defenses and hunt down the elusive OctoAlien! 🐙
+        </p>
+        <p>Developed with Claude Sonnet 4.5.</p>
+        <p> Claude came up the the starfield background and the cool sinuous tentacles for the boss ~</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LBgb2JXOoK0?si=wBnyI3CGoderkZZY" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="links">
+            <ul>
+            <li><a class="mobile-links" href="https://hazeon-ctrl.github.io/OctoAlien-2-5/">Mobile version</a><br></li>
+                <li><a class="links" href="https://hazeon-ctrl.github.io/OctoAlien/">PC version</a></li>
+            </ul>
+        </div>
+
+        <details>
+            <span class="code-icon">&#128220;</span>
+            <summary>OctoAlien - Design Specification v2.1 (Oct 4, 2025)</summary>
+            <p>
+                # OctoAlien - Design Specification v2.1) October 4, 2025<br>
+                <br>
+                **Format:** Game Program Design Specification  <br>
+                **Intended Audience:** Claude.ai and other implementation agents  <br>
+                **Target Platform:** Mobile-first (touch), PC-compatible (keyboard)<br>
+                **Unique formatting: "+" focus on this element +, "~" add this element if possible ~<br>
+                <br>
+                ---<br>
+                <br>
+                ## Core Design Pillars<br>
+                <br>
+                1. **Retro Arcade Authenticity** - Evoke 1970s-1980s arcade cabinets through visual style, sound design, and game feel<br>
+                2. **Mobile-Native Experience** - Touch controls as primary input, layout optimized for vertical mobile displays<br>
+                3. **Rhythmic Gameplay** - All timing, movement, and audio should feel connected and musical ~<br>
+                4. **Signature Mechanic Focus** - The three-stage Charge Bomb is the star; make it feel powerful and satisfying +<br>
+                <br>
+                ---<br>
+                <br>
+                ## Visual Design System<br>
+                <br>
+                ### Aesthetic Guidelines<br>
+                <br>
+                - **Style:** Retro arcade with deliberate detail +<br>
+                - **Philosophy:** Simple but not basic - small touches matter (eyes on bricks, tentacle animation, subtle gradients)<br>
+                - **Effects:** CRT-style glow/bloom, slight color bleed on bright elements, scanline overlay optional +<br>
+                - **Typography:** Monospace font for  basic text and numbers, additional messages or displays may be contrasting ~<br>
+                - **Color Temperature range:** Warm (magenta, orange, yellow) versus cool (cyan, blue) for visual contrast ~<br>
+                <br>
+                ### Color Palette<br>
+                <br>
+                - **Primary (Octo):** Magenta, purple, or hot orange - should feel alien and threatening<br>
+                - **Secondary (Bricks):** Orange spectrum (amber to burnt orange)<br>
+                - **Tertiary (Bombers):** Brown to orange-brown, darker accents<br>
+                - **Player:** Light cyan/blue body, light yellow core detail, thin black outline<br>
+                <br>
+                - **Projectiles:** <br>
+                - Player bullets: Bright yellow with glow<br>
+                - Brick bullets: Orange with glow<br>
+                - Bomber bullets: Dark red or brown, minimal glow<br>
+                - Octo bombs: Match Octo color with lighter border/glow<br>
+                - **Background:** Deep space - black base with white stars, subtle blue nebula hints<br>
+                - **UI Text:** White or cyan, always readable against background<br>
+                <br>
+                ### Visual Hierarchy & Layout<br>
+                **Mobile Vertical Display Priority**<br>
+                <br>
+                ```<br>
+                ┌─────────────────────┐<br>
+                │   OCTO ALIEN (5%)   │ ← Top anchor<br>
+                ├─────────────────────┤<br>
+                │ ▓▓▓▓ BRICK ROWS     │ ← 4 rows, spawning zone<br>
+                │ ▓▓▓▓  (15-20%)      │<br>
+                │ ▓▓▓▓                │<br>
+                │ ▓▓▓▓                │<br>
+                ├─────────────────────┤<br>
+                │                     │<br>
+                │   [BOMBER ZONE]     │ ← Mid-screen traverse<br>
+                │                     │<br>
+                │ SCORE: 0000    ←    │ ← Stats overlay (no border)<br>
+                │ LIVES: ❤❤❤          │   Middle-left, medium size<br>
+                │ HEALTH: ████         │<br>
+                │                     │<br>
+                ├─────────────────────┤<br>
+                │        △            │ ← Player zone (bottom 15%)<br>
+                │    [CHARGE]         │ ← Charge button bottom-left<br>
+                └─────────────────────┘<br>
+                ```<br>
+                <br>
+                **Element Sizing:**<br>
+                - Octo: ~15-20% screen width, visible tentacles extend below body<br>
+                - Bricks: Small, 10-15 per row with small gaps<br>
+                - Player: ~6-8% screen width, clearly visible<br>
+                - Charge Button: ~8-10% screen width, similar to player size, easy to tap<br>
+                - UI Text: 3-4% screen height, crisp and legible<br>
+                <br>
+                ---<br>
+                <br>
+                ## Game Objects - Detailed Specifications<br>
+                <br>
+                ### The Octo Alien (Boss)<br>
+                **Visual Description:**<br>
+                - Base shape: Colored rectangle (landscape orientation)<br>
+                - Two horizontally rectangular eyes: white, positioned near top of base shape<br>
+                - Eight tentacles along bottom edge: flowing, organic movement +<br>
+                - Color: Magenta/purple/hot-orange gradient or solid<br>
+                - Subtle glow effect around entire body<br>
+                - Size: Should feel imposing but leave room for brick rows below +<br>
+                <br>
+                **Tentacle Animation:**<br>
+                - Formula-based sine wave motion: `offset = sin(time * speed + tentacleIndex * phase) * amplitude`<br>
+                - Suggested values: speed = 2-3, phase = 0.4-0.5 radians, amplitude = 8-15 pixels<br>
+                - Creates gentle, hypnotic undulation ~<br>
+                - Should feel alien but not chaotic<br>
+                <br>
+                **Behavior:**<br>
+                - **Phase 1 (100%-50% health):** Stationary at top center, menacing but still
+                - **Phase 2 (49%-0% health):** Horizontal movement, sine wave or back-forth pattern, drops bombs every 2-3 seconds<br>
+                - Movement speed: Moderate, telegraphed, not frantic<br>
+                <br>
+                ### Bricks (Secondary Enemies)<br>
+                **Visual Description:**<br>
+                - Small rectangles, orange spectrum (amber, orange, burnt orange variations)<br>
+                - Optional detail: Two tiny white dot eyes for personality<br>
+                - Slight gradient or highlight for depth<br>
+                - Minimal glow<br>
+                <br>
+                **Behavior:**<br>
+                - Spawn randomly in available slots across 4 rows<br>
+                - Spawn rate: Start slow (~1 brick per second), increase gradually<br>
+                - Each brick fires bullets downward at intervals (0.5-1.5 seconds randomly)<br>
+                - Destroyed on contact with player bullet (1 hit)<br>
+                - Score value: 10 points per brick<br>
+                <br>
+                **Bullet Pattern:**<br>
+                - Straight down trajectory<br>
+                - Orange glow trail<br>
+                - Moderate speed (dodgeable but not trivial)<br>
+                <br>
+                ### Bombers (Tertiary Enemies)<br>
+                **Visual Description:**<br>
+                - Wider rectangle body (2:1 or 3:1 aspect ratio)<br>
+                - Smaller rectangle markers on left and right edges (darker shade)<br>
+                - Brown to orange-brown color<br>
+                - Minimal detail, functional design<br>
+                <br>
+                **Behavior:**<br>
+                - Spawn randomly from left or right edge<br>
+                - Move horizontally across screen following gentle sine wave (vertical oscillation)<br>
+                - Drop 1-3 bombs during crossing<br>
+                - Spawn frequency: Every 8-15 seconds (variable)<br>
+                - Speed: Moderate, trackable<br>
+                - Can be destroyed by player bullets (2-3 hits)<br>
+                <br>
+                ### The Player<br>
+                **Visual Description:**<br>
+                - "Baseball diamond" rotated: right angle point at top, 90° arc at bottom<br>
+                - Light blue/cyan base color<br>
+                - Light yellow central feature (cockpit/core)<br>
+                - Thin black outline for definition<br>
+                - Slight glow or pulse when charging bomb<br>
+                <br>
+                **Controls:**<br>
+                - **Touch (Mobile):** Tap/drag left or right side of screen to move player<br>
+                - **Keyboard (PC):** A/D or Left/Right arrows<br>
+                - Movement: Smooth, responsive, slight momentum but snappy<br>
+                - Auto-fire while moving: 3 shots per second, evenly spaced<br>
+                <br>
+                **Stats:**<br>
+                - Health: 100% (displayed as bar or percentage)<br>
+                - Lives: 3 (displayed as hearts or icons)<br>
+                - Takes 25% damage from Octo bombs<br>
+                - Loses 1 life from brick or bomber bullets<br>
+                - Death: Respawn after 1 second if lives remain<br>
+                <br>
+                ### Charge Bomb System (Signature Mechanic)<br>
+                <br>
+                **UI Button:**<br>
+                - Position: Bottom-left corner<br>
+                - Size: Similar to player character (~8-10% width)<br>
+                - Label: "CHARGE" in monospace font<br>
+                - Visual states:<br>
+                - Idle: Muted color (gray or dark blue)<br>
+                - Charging: Pulsing glow, intensity increases with charge time<br>
+                - Launched: Brief flash, returns to idle<br>
+                - Cooldown: Dim with timer or fill indicator<br>
+                <br>
+                **Three-Stage Mechanic:**<br>
+                <br>
+                **Stage 1 - Charge (Press and Hold):**<br>
+                - Duration: 0-2 seconds (capped at 2s)<br>
+                - Visual feedback:<br>
+                - Button glows brighter over time<br>
+                - Player character pulses/glows with energy<br>
+                - Optional: Charge meter fills, screen edges glow<br>
+                - Audio: Rising pitch or intensifying hum (110Hz → 440Hz over 2 seconds)<br>
+                - Feel: Building tension and power<br>
+                <br>
+                **Stage 2 - Launch (Release):**<br>
+                - Bomb launches upward from player position<br>
+                - Visual: Bright yellow-white sphere with glow trail<br>
+                - Speed: Fast but trackable (~400-600px/second)<br>
+                - Audio: Sharp "whoosh" release sound (spike at 880Hz)<br>
+                - Bomb travels until player detonates or it reaches top of screen<br>
+                <br>
+                **Stage 3 - Detonate (Press Again):**<br>
+                - Player presses Charge button again to trigger detonation<br>
+                - Visual effect:<br>
+                - Expanding circular wave from bomb position<br>
+                - Bright flash (white/yellow)<br>
+                - Blast radius visualization (circle or hexagon, semi-transparent)<br>
+                - Radius based on charge time: min ~60px, max ~200px<br>
+                - Audio: Deep "BOOM" with satisfying bass (80-110Hz) and bright overtones<br>
+                - Duration: Blast visual persists for 0.5-1 second<br>
+                - Effect: Prevents brick spawning in blast radius for 3-5 seconds<br>
+                - Cooldown: 4-6 seconds before next charge available<br>
+                <br>
+                **Blast Area Mechanic:**<br>
+                - Creates temporary "dead zone" where bricks cannot spawn<br>
+                - Does NOT destroy existing bricks (strategic choice)<br>
+                - Does NOT affect Octo or Bombers<br>
+                - Visual indicator: Faint shimmer or grid distortion in affected area during prevention period<br>
+                <br>
+                ---<br>
+                <br>
+                ## Audio Design System<br>
+                <br>
+                **Philosophy:** Every action should have a distinct, musically related sound using Web Audio API<br>
+                <br>
+                ### Tonal Framework<br>
+                - **Base Frequency:** A220 (220Hz) - low A<br>
+                - **Scale:** Pentatonic minor for cohesion (A, C, D, E, G)<br>
+                - **Span:** 2-3 octaves (110Hz - 880Hz)<br>
+                - **Synthesis:** Simple waveforms (sine, triangle, square, sawtooth)<br>
+                <br>
+                ### Sound Map<br>
+                <br>
+                **Player Actions:**<br>
+                - Move: Subtle low pulse (110Hz triangle wave, 50ms)<br>
+                - Shoot: Quick ping (440Hz sine, 80ms, slight pitch bend down)<br>
+                - Hit Enemy: Satisfying "pop" (330Hz → 220Hz, 100ms)<br>
+                - Take Damage: Harsh drop (440Hz → 110Hz sawtooth, 200ms)<br>
+                - Death: Descending arpeggio (440→330→220→110Hz, 500ms total)<br>
+                <br>
+                **Enemies:**<br>
+                - Brick Spawn: Soft "bleep" (330Hz sine, 60ms)<br>
+                - Brick Shoot: Sharp "pew" (550Hz triangle, 70ms)<br>
+                - Bomber Approach: Low rumble (110Hz square with LFO, continuous)<br>
+                - Bomber Bomb Drop: Deep "thunk" (165Hz, 120ms)<br>
+                <br>
+                **Octo Alien:**<br>
+                - Idle Ambience: Slow LFO on 220Hz (ominous presence)<br>
+                - Phase Change (50% health): Dramatic tone shift (chord: 220Hz + 277Hz + 330Hz)<br>
+                - Movement: Swelling pulse synchronized with position<br>
+                - Drop Bomb: Threatening drop (550Hz → 165Hz, 200ms)<br>
+                - Death: Complex descending cascade (500ms, multiple frequencies)<br>
+                <br>
+                **Charge Bomb:**<br>
+                - Charging: Rising pitch (110Hz → 440Hz over charge time, sine wave)<br>
+                - Launch: Sharp "fwoosh" (880Hz spike, quick decay)<br>
+                - Detonate: Layered explosion (80Hz bass + 440Hz treble, 300ms)<br>
+                - Blast Active: Subtle shimmer (high frequency noise, quiet)<br>
+                <br>
+                **UI/System:**<br>
+                - Game Start: Ascending arpeggio (energizing)<br>
+                - Level Complete: Victory fanfare (major scale sequence)<br>
+                - Game Over: Melancholy descent<br>
+                <br>
+                **Mix Guidelines:**<br>
+                - Player sounds: Slightly louder, centered<br>
+                - Enemy sounds: Balanced, slight stereo positioning based on screen position<br>
+                - Bass frequencies (below 150Hz): Use sparingly for impact<br>
+                - All sounds: Quick attack, short sustain, minimal release (arcade-style)<br>
+                <br>
+                ---<br>
+                <br>
+                ## Gameplay Flow & Progression<br>
+                <br>
+                ### Game Initialization<br>
+                1. Title screen with "OCTO ALIEN" in glowing text<br>
+                2. Brief control overlay (3-5 seconds): "TAP TO MOVE • CHARGE TO BLAST"<br>
+                3. Fade to game field with stats visible<br>
+                <br>
+                ### Phase 1: Learning Phase (100%-50% Octo Health)<br>
+                **Tempo: Moderate, Manageable**<br>
+                - Octo remains stationary<br>
+                - Brick spawn rate: 1 per 1.0-1.5 seconds<br>
+                - Bombers: Every 12-15 seconds<br>
+                - Player learns controls and charge bomb timing<br>
+                - Feel: Tense but fair<br>
+                <br>
+                ### Phase 2: Challenge Phase (49%-0% Octo Health)<br>
+                **Tempo: Intense, Rhythmic**<br>
+                - Octo begins horizontal movement<br>
+                - Octo drops bombs every 2-3 seconds<br>
+                - Brick spawn rate: 1 per 0.5-0.8 seconds<br>
+                - Bombers: Every 8-10 seconds<br>
+                - Player must juggle multiple threats<br>
+                - Feel: Chaotic but conquerable with skill<br>
+                <br>
+                ### Victory Condition<br>
+                - Octo health reaches 0%<br>
+                - Dramatic death animation (explosion, fade out)<br>
+                - Victory fanfare<br>
+                - Final score display<br>
+                - Option to restart<br>
+                <br>
+                ### Defeat Condition<br>
+                - Player loses all lives<br>
+                - Brief death animation<br>
+                - "GAME OVER" text<br>
+                - Final score display<br>
+                - Option to restart<br>
+                <br>
+                ### Scoring System<br>
+                - Brick destroyed: 10 points<br>
+                - Bomber destroyed: 50 points<br>
+                - Octo damaged: 5 points per 1% health<br>
+                - Octo defeated: 500 bonus points<br>
+                - Perfect charge bomb (2s charge): 25 bonus points<br>
+                <br>
+                ---<br>
+                <br>
+                ## Game Feel & Polish<br>
+                <br>
+                ### Movement Feel<br>
+                - **Player:** Responsive with slight acceleration/deceleration (50-100ms ease)<br>
+                - **Octo:** Smooth, menacing, telegraphed<br>
+                - **Bombers:** Flowing, predictable sine wave<br>
+                - **All Projectiles:** Crisp, no lag, clear trajectories<br>
+                <br>
+                ### Impact & Feedback<br>
+                - **Hit Confirmation:** Screen shake (subtle, 2-3px, 50ms) + sound + brief flash on target<br>
+                - **Charge Bomb Detonation:** Moderate screen shake (5-8px, 200ms) + bright flash<br>
+                - **Octo Phase Change:** Screen flash + dramatic sound + brief slow-motion (optional)<br>
+                - **Player Death:** Quick flash to white, 500ms respawn delay<br>
+                <br>
+                ### Particle Effects (Optional but Recommended)<br>
+                - Bullet impacts: Small burst (3-5 particles)<br>
+                - Explosions: Expanding ring + particles<br>
+                - Charge bomb trail: Glowing wake<br>
+                - Destroyed enemies: Brief fragment scatter<br>
+                <br>
+                ### Performance Targets<br>
+                - 60 FPS on modern mobile devices<br>
+                - Touch response latency: <50ms<br>
+                - Smooth animations, no stuttering<br>
+                - Efficient collision detection<br>
+                <br>
+                ---<br>
+                <br>
+                ## Technical Implementation Notes<br>
+                <br>
+                ### Web Audio API Sound Generation<br>
+                - Use OscillatorNode for tones<br>
+                - Use GainNode for volume envelopes<br>
+                - BiquadFilterNode for texture (optional)<br>
+                - Pre-generate sound patterns for consistency<br>
+                - Keep total simultaneous sounds <10 for performance<br>
+                <br>
+                ### Collision Detection<br>
+                - Simple bounding box for most objects<br>
+                - Circle collision for charge bomb blast radius<br>
+                - Spatial partitioning for brick grid optimization<br>
+                <br>
+                ### State Management<br>
+                - Game states: MENU, PLAYING, PAUSED, GAME_OVER, VICTORY<br>
+                - Octo phases: PHASE_1 (stationary), PHASE_2 (moving)<br>
+                - Charge bomb states: IDLE, CHARGING, LAUNCHED, DETONATING, COOLDOWN<br>
+                <br>
+                ### Mobile Optimization<br>
+                - Touch target minimum 44x44px (accessibility)<br>
+                - Test on various screen sizes (320px - 428px width common)<br>
+                - Prevent scroll/zoom on game canvas<br>
+                - Handle orientation lock (portrait only)<br>
+                <br>
+                ---<br>
+                <br>
+                ## Final Implementation Checklist<br>
+                <br>
+                ### Must Have (Core Experience)<br>
+                - ✓ Octo with animated tentacles<br>
+                - ✓ Brick spawning and shooting<br>
+                - ✓ Player movement and auto-fire<br>
+                - ✓ Three-stage charge bomb<br>
+                - ✓ Touch controls (mobile) and keyboard (PC)<br>
+                - ✓ Web Audio API sounds for all actions<br>
+                - ✓ Octo phase change at 50% health<br>
+                - ✓ Score, lives, health display<br>
+                - ✓ Victory and defeat conditions<br>
+                <br>
+                ### Should Have (Polishing Elements)<br>
+                - ✓ Bomber enemies<br>
+                - ✓ CRT glow/bloom effects<br>
+                - ✓ Screen shake on impacts<br>
+                - ✓ Starfield background<br>
+                - ✓ Death and respawn animations<br>
+                - ✓ Charge bomb visual feedback<br>
+                <br>
+                ### Nice to Have (Extra Polish)<br>
+                - ✓ Particle effects<br>
+                - ✓ Scanline overlay<br>
+                - ✓ Subtle color bleed on bright objects<br>
+                - ✓ Brief control tutorial on start<br>
+                - ✓ High score persistence<br>
+                - ✓ Pause functionality<br>
+                <br>
+                ---<br>
+                <br>
+                **Design Philosophy Summary:**  <br>
+                OctoAlien should feel like discovering a lost arcade cabinet from 1982 - simple to understand, difficult to master, with a unique central mechanic (charge bomb) that rewards timing and strategy. Every visual and audio element should reinforce the retro aesthetic while providing clear, satisfying feedback. The mobile-first approach means large touch targets, clear visual hierarchy, and gameplay that works in portrait orientation with one-handed controls when possible.<br>
+                <br>
+                **Design Mantra:** *Retro aesthetics, modern feel. Simple to learn, satisfying to master.*<br>
+            </p>
+        </details>
+        <p><em>updated: October 9, 2025</em></p>
+    </section>
+<br>
+    <section>
+        <h2>Grocery Simulator</h2>
+        <img class="project-icon" src="Grocery-Sim-icon.png" alt="Grocery store checkout in pixel art style">
+        <p>
+            A text based game with weighted lottery sales demands,
+            departmental purchases and margins, daily sales and expenses including basic employee management.
+            You can currently cheat by raising prices as much as possible — customers won't refuse high prices yet.
+        </p>
+        <div class="links">
+            <ul> <li>
+            <a class="links" href="https://hazeon-ctrl.github.io/GrocerySimulator/">Grocery Sim 2</a>
+            </li></ul>
+
+        </div>
+
+        <p><em>updated: September 21, 2025</em></p>
+    </section>
+<br>
+    <section>
+        <h2>Towers of Hanoi</h2>
+        <div class="project-icon">
+        <img src="towers-of-hanoi.png" alt="Towers of Hanoi game">
+        </div>
+        </br>
+        <p>
+            A classic puzzle game: move the tower of discs to another location without placing larger discs
+            on top of smaller ones. Base code by Ali Spittel. Attempted to add my own CSS (which is a fine mess).
+            Added a nice clicking sound to disc interaction and a pretty cool BGM downloaded from
+            <a class="links" href="https://pixabay.com/sound-effects/search/sfx/">Pixabay</a>.
+        </p>
+        <div class="links">
+            <ul><li>
+            <a class="links" href="https://hazeon-ctrl.github.io/Towers-of-Hanoi/">Towers of Hanoi</a>
+            </li></ul>
+        </div>
+        <p><em>updated: September 12, 2025</em></p>
+    </section>
+<br>
+
+    <br>
+</main>
+
+<footer>
+    <a class="links" href="https://github.com/hazeon-ctrl">https://github.com/hazeon-ctrl</a>
+</footer>
 </body>
 </html>
